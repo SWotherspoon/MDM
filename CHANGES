@@ -1,0 +1,19 @@
+2013-06-27
+1.3 -- released
+(1) Reworked function mdm to avoid direct calls to C-code in nnet.
+This involved removal of non-necessary code in the context of the mdm.
+
+2012-05-06
+1.2 -- released
+(1) Fixed bug in ed and eds. Now passes power q for single rows.
+TO DO -- sort out ed's  --- get rid of retq
+
+2012-01-26
+1.1 -- released
+(1) Corrected error in short-cut calculation of diversity of saturated (alpha) and constant (gamma) models when weights are used.
+(2) Change retq=T to retq = retq for recursive use in functions ed1 and eds1
+(3) Change to alpha = FALSE in options for mdm; mdm also returns entropy and diversity of the fitted values
+
+2011-11-26
+1.0 -- released
+
