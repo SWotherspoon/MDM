@@ -5,7 +5,7 @@
 \title{Analysis of Deviance, Entropy and Diversity Tables}
 \usage{
 \method{anova}{mdm}(object, ..., topnote = TRUE, cols = c("df", "dev",
-  "ent", "div"))
+  "pr", "ent", "div"))
 }
 \arguments{
 \item{object, }{objects of class \code{mdm}, usually, a result of a call to

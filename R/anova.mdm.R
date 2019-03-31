@@ -47,7 +47,7 @@
 ##' anova(fit0,fit1,fit2,fit3)
 ##' @importFrom stats deviance formula pchisq
 ##' @export
-anova.mdm <- function(object, ..., topnote = TRUE, cols = c("df","dev","ent","div")) {
+anova.mdm <- function(object, ..., topnote = TRUE, cols = c("df","dev","pr","ent","div")) {
   dotargs <- list(...)
   named <- if (is.null(names(dotargs)))
              rep(FALSE, length(dotargs))
@@ -81,15 +81,15 @@ anova.mdm <- function(object, ..., topnote = TRUE, cols = c("df","dev","ent","di
   dent <- c(NA, -diff(ent))
   div <- exp(ent)
   ddiv <- exp(dent)
-  ins <- !is.na(match(rep(c("df","dev","ent","div"),each=2),cols))
+  ins <- !is.na(match(rep(c("df","dev","pr","ent","div"),times=c(2,2,1,2,2)),cols))
   variables <- lapply(object, function(x) paste(deparse(formula(x)),
                                                 collapse = "\n"))
   top <- paste("Model ", format(1L:nt), ": ", variables,
                sep = "", collapse = "\n")
-  out <- data.frame(Resid.df = dfs, df = df, Deviance = lls,
-                    ddev = x2, ent = ent, dent = dent, div = div, ddiv = ddiv)[,ins]
-  names(out) <- c("DF", "DF-Diff", "Dev",
-                  "Dev-Diff","Ent", "Ent-Diff","Div", "Div-Ratio")[ins]
+  out <- data.frame(Resid.df = dfs, df = df, Deviance = lls, ddev = x2, pr = pr,
+                    ent = ent, dent = dent, div = div, ddiv = ddiv)[,ins]
+  names(out) <- c("DF", "DF-Diff", "Dev", "Dev-Diff", "Pr",
+                  "Ent", "Ent-Diff","Div", "Div-Ratio")[ins]
   rownames(out) <- as.character(1:nt)
   if (!topnote) {
     rownames(out) <- paste("Model ", format(1L:nt), ": ", variables,
